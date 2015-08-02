@@ -32,6 +32,16 @@ div(ng-include='"components/navbar/navbar.html"')
           p.help-block(ng-show='form.password.$error.mongoose')
             | {{ errors.password }}
 
+        .form-group(ng-class='{ "has-success": form.customerType.$valid && submitted,\
+        "has-error": form.customerType.$invalid && submitted }')
+          label Customer Type
+          input.form-control(type='text', name='customerType', ng-model='user.customerType', required='', mongoose-error='')
+          p.help-block(ng-show='form.customerType.$error.required && submitted')
+            | Are you a buyer or a seller?
+          // TODO: make this more human friendly
+          p.help-block(ng-show='form.customerType.$error.mongoose')
+            | {{ errors.customerType }}
+
         div
           button.btn.btn-inverse.btn-lg.btn-login(type='submit')
             | Sign up

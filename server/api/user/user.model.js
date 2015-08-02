@@ -16,7 +16,10 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
-  customerType: String,
+  customerType: {
+    type: String,
+    enum: customerTypes
+  },
   descTags: [],
   hashedPassword: String,
   provider: String,

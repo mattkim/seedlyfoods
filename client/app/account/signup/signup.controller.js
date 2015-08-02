@@ -12,7 +12,8 @@ angular.module('seedlyApp')
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
+          customerType: $scope.user.customerType
         })
         .then( function() {
           // Account created, redirect to home
