@@ -32,9 +32,10 @@ div(ng-include='"components/navbar/navbar.html"')
           p.help-block(ng-show='form.password.$error.mongoose')
             | {{ errors.password }}
 
+        // TODO: make this a drop-down
         .form-group(ng-class='{ "has-success": form.customerType.$valid && submitted,\
         "has-error": form.customerType.$invalid && submitted }')
-          label Customer Type
+          label Buyer / Seller
           input.form-control(type='text', name='customerType', ng-model='user.customerType', required='', mongoose-error='')
           p.help-block(ng-show='form.customerType.$error.required && submitted')
             | Are you a buyer or a seller?
@@ -42,13 +43,63 @@ div(ng-include='"components/navbar/navbar.html"')
           p.help-block(ng-show='form.customerType.$error.mongoose')
             | {{ errors.customerType }}
 
+        h3 Contact Info
+
+        // TODO: add phone number validation
+        .form-group(ng-class='{ "has-success": form.phoneNumber.$valid && submitted }')
+          label Phone Number
+          input.form-control(type='text', name='phoneNumber', ng-model='user.phoneNumber', required='', mongoose-error='')
+          p.help-block(ng-show='form.phoneNumber.$error.mongoose')
+            | {{ errors.phoneNumber }}
+
+        // TODO: add fax number validation
+        .form-group(ng-class='{ "has-success": form.faxNumber.$valid && submitted }')
+          label Fax Number
+          input.form-control(type='text', name='faxNumber', ng-model='user.faxNumber', required='', mongoose-error='')
+          p.help-block(ng-show='form.faxNumber.$error.mongoose')
+            | {{ errors.faxNumber }}
+
+        h3 Address Info
+
+        .form-group(ng-class='{ "has-success": form.addressFullName.$valid && submitted }')
+          label Full Name
+          input.form-control(type='text', name='addressFullName', ng-model='user.addressFullName', required='', mongoose-error='')
+          p.help-block(ng-show='form.addressFullName.$error.mongoose')
+            | {{ errors.addressFullName }}
+
+        .form-group(ng-class='{ "has-success": form.addressLine1.$valid && submitted }')
+          label Address Line 1 (Street address, P.O. box, company name, c/o)
+          input.form-control(type='text', name='addressLine1', ng-model='user.addressLine1', required='', mongoose-error='')
+          p.help-block(ng-show='form.addressLine1.$error.mongoose')
+            | {{ errors.addressLine1 }}
+
+        .form-group(ng-class='{ "has-success": form.addressLine2.$valid && submitted }')
+          label Address Line 2 (Apartment, suite, unit, building, floor, etc.)
+          input.form-control(type='text', name='addressLine2', ng-model='user.addressLine2', required='', mongoose-error='')
+          p.help-block(ng-show='form.addressLine2.$error.mongoose')
+            | {{ errors.addressLine2 }}
+
+        .form-group(ng-class='{ "has-success": form.city.$valid && submitted }')
+          label City
+          input.form-control(type='text', name='city', ng-model='user.city', required='', mongoose-error='')
+          p.help-block(ng-show='form.city.$error.mongoose')
+            | {{ errors.city }}
+
+        .form-group(ng-class='{ "has-success": form.state.$valid && submitted }')
+          label State
+          input.form-control(type='text', name='state', ng-model='user.state', required='', mongoose-error='')
+          p.help-block(ng-show='form.state.$error.mongoose')
+            | {{ errors.state }}
+
+        .form-group(ng-class='{ "has-success": form.zipCode.$valid && submitted }')
+          label Zip Code
+          input.form-control(type='text', name='zipCode', ng-model='user.zipCode', required='', mongoose-error='')
+          p.help-block(ng-show='form.zipCod.$error.mongoose')
+            | {{ errors.zipCode }}
+
         div
           button.btn.btn-inverse.btn-lg.btn-login(type='submit')
             | Sign up
-          = ' '
-          a.btn.btn-default.btn-lg.btn-register(href='/login')
-            | Login
-
 
         hr
 

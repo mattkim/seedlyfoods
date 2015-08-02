@@ -59,6 +59,9 @@ angular.module('seedlyApp')
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
 
+        console.log("auth createUser");
+        console.log(user);
+
         return User.save(user,
           function(data) {
             $cookieStore.put('token', data.token);

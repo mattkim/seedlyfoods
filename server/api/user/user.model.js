@@ -5,23 +5,43 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 var customerTypes = ['seller', 'buyer'];
-var sellerDescTags = ['producer', 'distributor', 'redistributor', 'retailer', 'wholesale', 'manufacturer', 'farmer', 'restaurant'];
-var buyerDescTags = ['restaurant', 'small business', 'chain', 'franchise'];
+
+var AddressSchema = new Schema({
+    fullName : String,
+    addressLine1 : String,
+    addressLine2 : String,
+    city : String,
+    state : String,
+    zipCode : String
+});
 
 // TODO: add input fields for these extra types.
 var UserSchema = new Schema({
-  name: String,
-  email: { type: String, lowercase: true },
+  name: {
+    type: String,
+    required: true
+  },
+  email: { 
+    type: String,
+    lowercase: true,
+    required: true
+  },
   role: {
     type: String,
     default: 'user'
   },
   customerType: {
     type: String,
-    enum: customerTypes
+    enum: customerTypes,
+    required: true
   },
-  descTags: [],
-  hashedPassword: String,
+  phoneNumber: String,
+  faxNumber: String,
+  hashedPassword: {
+    type: String,
+    require: true
+  },
+  addresses: [AddressSchema],
   provider: String,
   salt: String,
   facebook: {},
