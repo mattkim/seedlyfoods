@@ -4,7 +4,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
+var customerTypes = ['seller', 'buyer'];
+var sellerDescTags = ['producer', 'distributor', 'redistributor', 'retailer', 'wholesale', 'manufacturer', 'farmer', 'restaurant'];
+var buyerDescTags = ['restaurant', 'small business', 'chain', 'franchise'];
 
+// TODO: add input fields for these extra types.
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
@@ -12,6 +16,8 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  customerType: String,
+  descTags: [],
   hashedPassword: String,
   provider: String,
   salt: String,
