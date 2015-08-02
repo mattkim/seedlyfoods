@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
-var customerTypes = ['seller', 'buyer'];
+var customerTypes = ['seller', 'buyer', 'admin'];
 
 var AddressSchema = new Schema({
     fullName : String,

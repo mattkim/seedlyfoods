@@ -137,6 +137,24 @@ angular.module('seedlyApp')
       },
 
       /**
+       * Check if a user is a seller
+       *
+       * @return {Boolean}
+       */
+      isSeller: function() {
+        return currentUser.customerType === 'seller';
+      },
+
+      /**
+       * Check if a user is a buyer
+       *
+       * @return {Boolean}
+       */
+      isBuyer: function() {
+        return currentUser.customerType === 'buyer';
+      },
+
+      /**
        * Get auth token
        */
       getToken: function() {

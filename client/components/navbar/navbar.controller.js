@@ -10,6 +10,8 @@ angular.module('seedlyApp')
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
+    $scope.isBuyer = Auth.isBuyer;
+    $scope.isSeller = Auth.isSeller;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     $scope.logout = function() {
