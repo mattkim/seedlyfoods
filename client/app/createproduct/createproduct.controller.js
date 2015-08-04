@@ -6,6 +6,8 @@ angular.module('seedlyApp')
 
     $scope.createProduct = function(form) {
       $scope.submitted = true;
+      $scope.imageUpload = false;
+      $scope.imgurl = '';
 
       if(form.$valid) {
         var productimage = $scope.product.productimage;
@@ -16,6 +18,7 @@ angular.module('seedlyApp')
         // TODO: should go into a service
         $http.get('/api/s3/signupload?name=' + name + '&type=' + type).then(function(res) {
           var signed_request = res.data[0].signed_request;
+          var url = res.data[0].url;
 
           var req = {
               method: 'PUT',
@@ -34,6 +37,8 @@ angular.module('seedlyApp')
           $http(req).then(function(res){
             console.log(res);
             // TODO: use the url here to persist into mongo under product
+            $scope.imageUpload = true;
+            $scope.imgurl = url;
           });
         });
       }

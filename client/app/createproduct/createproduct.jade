@@ -23,3 +23,6 @@ div(ng-include='"components/navbar/navbar.html"')
         div
           button.btn.btn-inverse.btn-lg.btn-login(type='submit')
             | Create
+
+        div(ng-show='imageUpload')
+          {{imgurl}}
