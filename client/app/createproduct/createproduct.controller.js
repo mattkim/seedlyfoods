@@ -15,7 +15,7 @@ angular.module('seedlyApp')
 
         // TODO: should go into a service
         $http.get('/api/s3/signupload?name=' + name + '&type=' + type).then(function(res) {
-          var signed_request = res[0].signed_request;
+          var signed_request = res.data[0].signed_request;
 
           var req = {
               method: 'PUT',
@@ -33,6 +33,7 @@ angular.module('seedlyApp')
 
           $http(req).then(function(res){
             console.log(res);
+            // TODO: use the url here to persist into mongo under product
           });
         });
       }

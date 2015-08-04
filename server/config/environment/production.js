@@ -19,5 +19,14 @@ module.exports = {
             process.env.MONGOHQ_URL ||
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
             'mongodb://localhost/seedly'
+  },
+
+  // S3 credentials
+  s3: {
+    access: process.env.AWS_ACCESS_KEY ||
+            'noaccesskey',
+    secret: process.env.AWS_SECRET_KEY ||
+            'nosecretkey',
+    bucket: 'seedlyfoods'
   }
 };

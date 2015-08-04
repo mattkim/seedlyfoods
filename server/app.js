@@ -9,7 +9,11 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
 var mongoose = require('mongoose');
+var aws = require('aws-sdk');
 var config = require('./config/environment');
+
+// Configure aws
+aws.config.update({accessKeyId: config.s3.access, secretAccessKey: config.s3.secret, region: 'us-west-1'});
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);

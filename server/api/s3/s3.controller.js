@@ -1,16 +1,14 @@
 'use strict';
 
 var aws = require('aws-sdk');
+var config = require('../../config/environment');
 
 // Generate a signed upload url to post a file to.
 exports.signupload = function(req, res) {
   var filename = req.query.name;
   var filetype = req.query.type;
-  var s3bucket = "seedlyfoods";
-
-  // TODO: put this in heroku config
-  // For local testing... not sure what to do yet. maybe beta creds
-  aws.config.update({accessKeyId: 'AKIAJQY25SY5GMDSITFA', secretAccessKey: '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', region: 'us-west-1'});
+  var s3bucket = config.s3.bucket;
+  
   var s3 = new aws.S3();
   var s3_params = {
       Bucket: s3bucket,
