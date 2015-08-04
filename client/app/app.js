@@ -21,7 +21,11 @@ angular.module('seedlyApp', [
       // Add authorization token to headers
       request: function (config) {
         config.headers = config.headers || {};
-        if ($cookieStore.get('token')) {
+
+        // Explicitly ignore passport bearer when we are doing s3-signed-upload
+        if(config.headers.Authorization === 's3-signed-upload') {
+          config.headers.Authorization = undefined;
+        } else if ($cookieStore.get('token')) {
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
         }
         return config;

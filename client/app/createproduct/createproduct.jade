@@ -1,0 +1,25 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row
+    .col-sm-12
+      h1 Create Product
+    .col-sm-12
+      form.form(name='form', ng-submit='createProduct(form)', novalidate='')
+
+        .form-group(ng-class='{ "has-success": form.name.$valid && submitted,\
+        "has-error": form.name.$invalid && submitted }')
+          label Name
+          input.form-control(type='text', name='name', ng-model='product.name', required='')
+          p.help-block(ng-show='form.name.$error.required && submitted')
+            | A name is required
+
+        .form-group(ng-class='{ "has-success": form.productimage.$valid && submitted,\
+        "has-error": form.productimage.$invalid && submitted }')
+          label Product Image
+          input.form-control(type='file', name='productimage', file-model='product.productimage', required='')
+          p.help-block(ng-show='form.productimage.$error.required && submitted')
+            | A product image is required
+
+        div
+          button.btn.btn-inverse.btn-lg.btn-login(type='submit')
+            | Create

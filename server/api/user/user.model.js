@@ -42,6 +42,8 @@ var UserSchema = new Schema({
     require: true
   },
   addresses: [AddressSchema],
+  // TODO: build a profile picture upload tool
+  profilePictureURL: String,
   provider: String,
   salt: String,
   facebook: {},
