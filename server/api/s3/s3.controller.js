@@ -1,11 +1,12 @@
 'use strict';
 
 var aws = require('aws-sdk');
+var uuid = require('node-uuid');
 var config = require('../../config/environment');
 
 // Generate a signed upload url to post a file to.
 exports.signupload = function(req, res) {
-  var filename = req.query.name;
+  var filename = uuid.v4() + "-" + req.query.name;
   var filetype = req.query.type;
   var s3bucket = config.s3.bucket;
   
