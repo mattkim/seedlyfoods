@@ -12,9 +12,9 @@ module.exports = {
 
   // S3 credentials
   s3: {
-    access: process.env.AWS_ACCESS_KEY ||
+    access: 'AKIAJQY25SY5GMDSITFA' ||
             'noaccesskey',
-    secret: process.env.AWS_SECRET_KEY ||
+    secret: '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' ||
             'nosecretkey',
     bucket: 'seedlyfoods'
   }
