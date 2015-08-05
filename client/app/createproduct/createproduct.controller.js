@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('seedlyApp')
-  .controller('CreateproductCtrl', function ($scope, $http) {
+  .controller('CreateproductCtrl', function ($scope, $http, s3) {
     $scope.product = {};
 
     $scope.createProduct = function(form) {
@@ -15,32 +15,15 @@ angular.module('seedlyApp')
         var name = file.name;
         var type = file.type;
 
-        // TODO: should go into a service
-        $http.get('/api/s3/signupload?name=' + name + '&type=' + type).then(function(res) {
-          var signed_request = res.data[0].signed_request;
-          var url = res.data[0].url;
-
-          var req = {
-              method: 'PUT',
-              url: signed_request,
-              headers: {
-                // internal solution to get around bearer auth from passport
-                // intentionally skip auth if we are doing an s3-signed-upload
-                'Authorization': 's3-signed-upload',
-                // Setting to undefined will reset defaulting to application/json;charset=utf-8
-                'Content-Type': undefined,
-                'x-amz-acl': 'public-read'
-              },
-              data: file
-          };
-
-          $http(req).then(function(res){
-            console.log(res);
-            // TODO: use the url here to persist into mongo under product
-            $scope.imageUpload = true;
-            $scope.imgurl = url;
-          });
-        });
+        s3.upload(name, type, file).then(
+          function(res) {
+            $scope.imgurl = res.imgurl;
+            $scope.imageUpload = res.imageUpload;
+          },
+          function(err) {
+            console.log(err);
+          }
+        );
       }
     };
   });
