@@ -2,14 +2,15 @@
 
 var _ = require('lodash');
 var Order = require('./order.model');
-var stripe = require('/../stripe.controller'); // TODO: double check this works.
+//var stripe = require('/../stripe.controller'); // TODO: double check this works.
 
 exports.charge = function(req, res) {
-  stripe.charge(req, res).then(
-    function(res) {
-      // If success, then create an order.
-      Order.create();
-    }
+  //stripe.charge(req, res).then(
+  //  function(res) {
+  //    // If success, then create an order.
+   //   // TODO: how to do this right
+   //   Order.create();
+   // }
   );
 };
 
