@@ -1,0 +1,35 @@
+div(ng-include='"components/navbar/navbar.html"')
+.col-md-12
+    form.form(name='form', stripe-form='charge', novalidate='')
+
+      .form-group(ng-class='{ "has-success": form.number.$valid && submitted,\
+        "has-error": form.number.$invalid && submitted }')
+          label Card Number
+          input.form-control(type='text', name='number', ng-model='number', placeholder="Card Number", required='')
+          p.help-block(ng-show='form.number.$error.required && submitted')
+            | A number is required
+
+      .form-group(ng-class='{ "has-success": form.expiry.$valid && submitted,\
+        "has-error": form.expiry.$invalid && submitted }')
+          label Expiration Date
+          input.form-control(type='text', name='expiry', ng-model='expiry', placeholder="Expiration Date", required='')
+          p.help-block(ng-show='form.expiry.$error.required && submitted')
+            | An expiration date is required
+
+      .form-group(ng-class='{ "has-success": form.cvc.$valid && submitted,\
+        "has-error": form.cvc.$invalid && submitted }')
+          label CVC
+          input.form-control(type='text', name='cvc', ng-model='cvc', placeholder="CVC", required='')
+          p.help-block(ng-show='form.cvc.$error.required && submitted')
+            | A cvc is required
+
+      .form-group(ng-class='{ "has-success": form.amount.$valid && submitted,\
+        "has-error": form.amount.$invalid && submitted }')
+          label Amount
+          input.form-control(type='text', name='amount', ng-model='checkout.amount', required='')
+          p.help-block(ng-show='form.amount.$error.required && submitted')
+            | An amount is required
+
+      div
+        button.btn.btn-inverse.btn-lg.btn-login(type='submit')
+          | Submit

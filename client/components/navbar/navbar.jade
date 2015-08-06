@@ -39,6 +39,10 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
         li(ng-show='isBuyer()', ng-class='{active: isActive("/orders")}')
           a(href='/orders') Orders
 
+        // TODO: implement checkout
+        li(ng-show='isBuyer()', ng-class='{active: isActive("/checkout")}')
+          a(href='/checkout') Checkout
+
         // TODO: implement update info make diff from seller?
         li(ng-show='isBuyer()', ng-class='{active: isActive("/accountinfo")}')
           a(href='/accountinfo') Account Info  

@@ -55,6 +55,7 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -70,6 +71,8 @@
           <script src="app/account/signup/signup.controller.js"></script>
           <script src="app/admin/admin.controller.js"></script>
           <script src="app/admin/admin.js"></script>
+          <script src="app/checkout/checkout.controller.js"></script>
+          <script src="app/checkout/checkout.js"></script>
           <script src="app/createproduct/createproduct.controller.js"></script>
           <script src="app/createproduct/createproduct.js"></script>
           <script src="app/fileModel/fileModel.directive.js"></script>
@@ -85,5 +88,12 @@
           <script src="components/socket/socket.service.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
+        <script src="https://js.stripe.com/v2/"></script>
+        <script>
+          // This identifies your website in the createToken call below
+          // TODO: isn't this super insecure
+          Stripe.setPublishableKey('pk_test_VCaRLwUvXdvAMUyk2ONw5YiH');
+          // ...
+        </script>
 </body>
 </html>
