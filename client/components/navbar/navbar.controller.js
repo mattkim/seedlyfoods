@@ -30,7 +30,7 @@ angular.module('seedlyApp')
       if(form.$valid){
         console.log($scope.searchbox);
         // Needs to redirect to a search view?
-        $location.path('/search');
+        $location.path('/search/' + $scope.searchbox.text);
       }
     };
   });
