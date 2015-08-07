@@ -5,7 +5,7 @@ var controller = require('./stripe.controller');
 
 var router = express.Router();
 
-// TODO: is post right
+// TODO: router.use?
 router.get('/charge', controller.charge);
 
 module.exports = router;

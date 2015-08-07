@@ -11,14 +11,15 @@ div(ng-include='"components/navbar/navbar.html"')
 
       .form-group(ng-class='{ "has-success": form.expiry.$valid && submitted,\
         "has-error": form.expiry.$invalid && submitted }')
-          label Expiration Date
+          label Expiration Date (MM/YY)
           input.form-control(type='text', name='expiry', ng-model='expiry', placeholder="Expiration Date", required='')
           p.help-block(ng-show='form.expiry.$error.required && submitted')
             | An expiration date is required
 
+      // TODO: validate 3 digits only
       .form-group(ng-class='{ "has-success": form.cvc.$valid && submitted,\
         "has-error": form.cvc.$invalid && submitted }')
-          label CVC
+          label CVC (3 Digit Code)
           input.form-control(type='text', name='cvc', ng-model='cvc', placeholder="CVC", required='')
           p.help-block(ng-show='form.cvc.$error.required && submitted')
             | A cvc is required
@@ -30,6 +31,12 @@ div(ng-include='"components/navbar/navbar.html"')
           p.help-block(ng-show='form.amount.$error.required && submitted')
             | An amount is required
 
+      // TODO: does not need billing address... interestingly, but should be optional
+      // TODO: should add shipping address here too.
+
       div
         button.btn.btn-inverse.btn-lg.btn-login(type='submit')
           | Submit
+
+      {{checkout.err}}
+      {{checkout.result}}

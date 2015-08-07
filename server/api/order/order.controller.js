@@ -2,16 +2,45 @@
 
 var _ = require('lodash');
 var Order = require('./order.model');
-//var stripe = require('/../stripe.controller'); // TODO: double check this works.
+var stripe = require('../stripe/stripe.controller'); // TODO: double check this works.
 
 exports.charge = function(req, res) {
-  //stripe.charge(req, res).then(
-  //  function(res) {
-  //    // If success, then create an order.
-   //   // TODO: how to do this right
-   //   Order.create();
-   // }
-  );
+  var token = req.query.token;
+  var amount = req.query.amount;
+
+  var chargeResult = stripe.charge(token, amount, function(chargeResult){
+    console.log(chargeResult);
+    var err = chargeResult.err;
+    var chargeInfo = chargeResult.charge;
+
+    if(err && err.type === 'StripeCardError') {
+      res.status(500).json(err);
+    } else {
+      res.status(200).json(chargeInfo);
+    }
+  });
+  //if (err && err.type === 'StripeCardError') {
+      // The card has been declined
+    //  console.log(err);
+    //  return err;
+    //} else {
+    //  console.log(charge);
+      // TODO: call the orders endpoint and then store
+      // all data we need for orders.
+      // order id
+      // amount
+      // billing address
+      // shipping address
+      // buyer account id
+      // seller account id
+      // refund status
+      // refund amount
+      // what we used? Stripe
+      // tax?
+      // shipping?
+      // Stripe tax?
+    //  return charge;
+    //}
 };
 
 // Get list of orders
