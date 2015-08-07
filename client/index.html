@@ -92,7 +92,8 @@
         <script src="https://js.stripe.com/v2/"></script>
         <script>
           // This identifies your website in the createToken call below
-          // TODO: isn't this super insecure
+          // TODO: isn't this super insecure, actually not that bad, becase
+          // it only tokenizes the address info, but does not charge it.
           Stripe.setPublishableKey('pk_test_VCaRLwUvXdvAMUyk2ONw5YiH');
           // ...
         </script>
