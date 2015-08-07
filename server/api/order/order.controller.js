@@ -16,8 +16,14 @@ exports.charge = function(req, res) {
 
     if(err && err.type === 'StripeCardError') {
       res.status(500).json(err);
+      // If this fails, need to release holding this quantity
     } else {
       res.status(200).json(chargeInfo);
+
+      // Need to make sure that if a charge is complete that the quantity available
+      // is decrememnted -- how to synchronize?  Mongo needs to support
+      // some kind of transactional feature.
+
       // all data we need for orders.
       // order id
       // amount
