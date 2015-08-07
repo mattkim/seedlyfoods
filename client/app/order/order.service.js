@@ -11,12 +11,9 @@ angular.module('seedlyApp')
         // orders will call stripe
         $http.get('/api/orders/charge?token=' + token + '&amount=' + amount).then(
           function(res) {
-            console.log(res);
-            // Redirect to order summary page...
             deferred.resolve(res);
           },
           function(err) {
-            console.log(err);
             deferred.reject(err);
           }
         );

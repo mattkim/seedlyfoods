@@ -15,12 +15,10 @@ angular.module('seedlyApp')
 
         order.charge(token, amount).then(
           function(res) {
-            console.log(res);
             $scope.checkout.result = res;
             // Redirect to order summary page...
           },
           function(err) {
-            console.log(err);
             $scope.checkout.err = err;
           }
         );

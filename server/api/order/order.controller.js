@@ -11,7 +11,6 @@ exports.charge = function(req, res) {
   var amount = req.query.amount;
 
   stripe.charge(token, amount, function(chargeResult){
-    console.log(chargeResult);
     var err = chargeResult.err;
     var chargeInfo = chargeResult.charge;
 
