@@ -5,10 +5,12 @@ var Order = require('./order.model');
 var stripe = require('../stripe/stripe.controller'); // TODO: double check this works.
 
 exports.charge = function(req, res) {
+  // Create order id here.
+
   var token = req.query.token;
   var amount = req.query.amount;
 
-  var chargeResult = stripe.charge(token, amount, function(chargeResult){
+  stripe.charge(token, amount, function(chargeResult){
     console.log(chargeResult);
     var err = chargeResult.err;
     var chargeInfo = chargeResult.charge;
@@ -17,15 +19,6 @@ exports.charge = function(req, res) {
       res.status(500).json(err);
     } else {
       res.status(200).json(chargeInfo);
-    }
-  });
-  //if (err && err.type === 'StripeCardError') {
-      // The card has been declined
-    //  console.log(err);
-    //  return err;
-    //} else {
-    //  console.log(charge);
-      // TODO: call the orders endpoint and then store
       // all data we need for orders.
       // order id
       // amount
@@ -39,8 +32,8 @@ exports.charge = function(req, res) {
       // tax?
       // shipping?
       // Stripe tax?
-    //  return charge;
-    //}
+    }
+  });
 };
 
 // Get list of orders
