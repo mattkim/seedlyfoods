@@ -4,21 +4,21 @@
 
 'use strict';
 
-var S3 = require('./s3.model');
+var Order = require('./order.model');
 
 exports.register = function(socket) {
-  S3.schema.post('save', function (doc) {
+  Order.schema.post('save', function (doc) {
     onSave(socket, doc);
   });
-  S3.schema.post('remove', function (doc) {
+  Order.schema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('s3:save', doc);
+  socket.emit('order:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('s3:remove', doc);
+  socket.emit('order:remove', doc);
 }

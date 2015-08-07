@@ -53,6 +53,14 @@ var all = {
     bucket: 'seedlyfoods'
   },
 
+  // Stripe credentials
+  stripe: {
+    sk: process.env.STRIPE_SK ||
+        'nosk',
+    pk: process.env.STRIPE_PK ||
+        'nopk'
+  },
+
   facebook: {
     clientID:     process.env.FACEBOOK_ID || 'id',
     clientSecret: process.env.FACEBOOK_SECRET || 'secret',
