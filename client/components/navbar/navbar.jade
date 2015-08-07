@@ -11,9 +11,9 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
 
     div#navbar-main.navbar-collapse.collapse(collapse='isCollapsed')
       div.col-sm-3.col-md-3
-        form.navbar-form(role='search')
+        form.navbar-form(role='search', name='form', ng-submit='search(form)')
           div.input-group
-            input.form-control(type='text', placeholder='Search for products')
+            input.form-control(type='text', ng-model='searchbox.text', placeholder='Search for products')
             span.input-group-btn
               button.btn.btn-default(type='button')
                 span.glyphicon.glyphicon-search
