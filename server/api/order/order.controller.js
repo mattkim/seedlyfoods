@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var Order = require('./order.model');
-var stripe = require('../stripe/stripe.controller'); // TODO: double check this works.
+var stripe = require('../stripe/stripe.controller');
 
 exports.charge = function(req, res) {
   // Create order id here.

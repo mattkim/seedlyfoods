@@ -2,7 +2,8 @@
 
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here https://dashboard.stripe.com/account/apikeys
-var stripe = require("stripe")("sk_test_opA5mvVCASuYUjM4KOJZRyc5");
+var config = require('../../config/environment');
+var stripe = require("stripe")(config.stripe.sk);
 
 // TODO: refactor this into a module
 exports.charge = function (stripeToken, amount, callback) {
