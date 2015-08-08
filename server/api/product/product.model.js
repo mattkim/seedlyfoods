@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 var AvailSchema = new Schema({
 	startDate: Date,
-	endDate:Date
+	endDate: Date
 });
 
 var OfferSchema = new Schema({
@@ -19,7 +19,8 @@ var OfferSchema = new Schema({
 });
 
 var ProductSchema = new Schema({
-  _user: {type:Schema.Types.ObjectId, ref:'Users', index: true},
+  // TODO: update this upstream
+  seller: {type:Schema.Types.ObjectId, ref:'Users', index: true},
   name: String,
   description: String,
   active: Boolean,
@@ -30,7 +31,7 @@ var ProductSchema = new Schema({
 ProductSchema.statics.findByUser = function(id, cb){
 	    console.log('ProductSchema.statics.findByUser');
 	    console.log(id);
-		return this.find({ _user: new ObjectId(id) }, cb);
+		return this.find({ seller: new ObjectId(id) }, cb);
 	}
 
 module.exports = mongoose.model('Product', ProductSchema);

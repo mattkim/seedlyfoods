@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Product = require('../api/product/product.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -60,6 +61,46 @@ User.find({}).remove(function() {
     customerType: 'seller'
   }, function() {
       console.log('finished populating users');
+
+      User.find({name:'Seller'}, function(err, users){
+        var seller = users[0];
+
+        Product.find({}).remove(function(){
+          Product.create({
+            seller:seller._id,
+            name:'Shrimp Fried Rice',
+            description:'The best shrimp fried rice in the world',
+            active: true,
+            imgurl:'https://seedlyfoods.s3.amazonaws.com/e2c8873d-9add-45e5-bbf5-4c13745cb9a3-friedrice.jpg',
+            offers:[{
+              type:'instant',
+              price:100,
+              unit:'lb',
+              quantity:100,
+              avails:[{
+                startDate: new Date(1439070053000),
+                endDate: new Date(),
+              }]
+            }]
+          }, {
+            seller:seller._id,
+            name:'Green Curry Chicken',
+            description:'The best green curry chicken in the world',
+            active: true,
+            imgurl:'https://seedlyfoods.s3.amazonaws.com/68958b30-d315-422f-93f7-0bf4da617b92-greencurry.jpg',
+            offers:[{
+              type:'instant',
+              price:100,
+              unit:'lb',
+              quantity:100,
+              avails:[{
+                startDate: new Date(1439070053000),
+                endDate: new Date(),
+              }]
+            }]
+          });
+        });
+      });
     }
   );
 });

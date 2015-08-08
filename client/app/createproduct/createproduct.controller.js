@@ -47,7 +47,7 @@ angular.module('seedlyApp')
                   // TODO: create product here
                   // TODO: figure out resource stuff in the service module.
                   Product.save({
-                    _user: currentUser._id,
+                    seller: currentUser._id,
                     name: $scope.product.name,
                     description: $scope.product.description,
                     imgurl: $scope.product.imgurl,
