@@ -1,7 +1,7 @@
 'use strict';
 
-var MAX_IMG_WIDTH = 1000;
-var MAX_IMG_HEIGHT = 1000;
+var MAX_IMG_WIDTH = 3000;
+var MAX_IMG_HEIGHT = 3000;
 var MAX_IMG_FILE_SIZE_KB = 10000;
 
 angular.module('seedlyApp')

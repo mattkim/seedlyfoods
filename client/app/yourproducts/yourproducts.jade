@@ -1,0 +1,13 @@
+div(ng-include='"components/navbar/navbar.html"', data-ng-init='init()')
+.container
+  .row
+    .col-lg-12
+      h2.page-header Your Products
+      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='product in awesomeProducts')
+        li
+          a(href='#', tooltip='{{product.name}}')
+            | {{product.name}}
+            br
+            | ${{product.offers[0].price}} / {{product.offers[0].unit}}
+            div.productimgdiv
+              img.productimg(src='{{product.imgurl}}')

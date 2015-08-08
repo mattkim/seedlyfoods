@@ -4,6 +4,23 @@ var _ = require('lodash');
 var Product = require('./product.model');
 
 // Get list of products
+exports.getUserProducts = function(req, res) {
+  // console.log(req._user);
+  console.log('getUserProducts');
+  console.log(req.params._user);
+
+  var id = req.params._user;
+  Product.findByUser(id,
+    function(err, products) {
+      console.log('findByUser')
+      console.log(err);
+      console.log(products);
+      return res.status(200).json(products);
+    }
+  );
+};
+
+// Get list of products
 exports.index = function(req, res) {
   Product.find(function (err, products) {
     if(err) { return handleError(res, err); }

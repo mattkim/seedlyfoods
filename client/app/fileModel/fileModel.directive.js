@@ -9,8 +9,12 @@ angular.module('seedlyApp')
         var modelSetter = model.assign;
         element.bind('change', function(){
                 scope.$apply(function(){
-                    modelSetter(scope, element[0].files);
+                    console.log(element[0].files);
+                    modelSetter(scope, element[0].files); 
                 });
+
+                scope.previewImage(element[0].files);
+
             });
       }
     };
