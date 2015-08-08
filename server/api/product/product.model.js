@@ -14,6 +14,7 @@ var OfferSchema = new Schema({
 	price: Number,
 	unit: String,
 	quantity: Number,
+	// TODO: note that avails gets retrieved as a weird object?
 	avails:[AvailSchema]
 });
 
