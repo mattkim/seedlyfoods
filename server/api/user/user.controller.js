@@ -63,6 +63,43 @@ exports.destroy = function(req, res) {
 /**
  * Change a users password
  */
+exports.addShoppingCartItem = function(req, res) {
+  var userId = req.user._id;
+  var shoppingCartItem = req.body.shoppingCartItem;
+
+  User.findById(userId, function(err, user) {
+    var shoppingCart = user.shoppingCart;
+    
+    if(shoppingCart === null) {
+      shoppingCart = [];
+    }
+
+    var found = false;
+    for(var i = 0; i < shoppingCart.length; i++) {
+      // TODO: might need to convert product to a string
+      if(shoppingCart.get(i).product === shoppingCartItem.product) {
+        shoppingCart.get(i).quantity += 1;
+        found = true;
+      }
+    }
+
+    // Create a new shopping cart item if we didn't find it already
+    if(!found) {
+      shoppingCart.push(shoppingCartItem);
+    }
+
+    user.shoppingCart = shoppingCart;
+
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.status(200).send('OK');
+    });
+  });
+};
+
+/**
+ * Change a users password
+ */
 exports.changePassword = function(req, res, next) {
   var userId = req.user._id;
   var oldPass = String(req.body.oldPassword);

@@ -14,6 +14,7 @@ var OfferSchema = new Schema({
 	price: Number,
 	unit: String,
 	quantity: Number,
+	// TODO: add remaining quantity
 	// TODO: note that avails gets retrieved as a weird object?
 	avails:[AvailSchema]
 });
@@ -32,6 +33,11 @@ ProductSchema.statics.findByUser = function(id, cb){
 	    console.log('ProductSchema.statics.findByUser');
 	    console.log(id);
 		return this.find({ seller: new ObjectId(id) }, cb);
+	}
+ProductSchema.statics.findByNameRegex = function(name, cb){
+	    console.log('ProductSchema.statics.findByNameRegex');
+	    console.log(name);
+		return this.find({ name: new RegExp(name, 'i')}, cb);
 	}
 
 module.exports = mongoose.model('Product', ProductSchema);

@@ -6,6 +6,15 @@ var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 var customerTypes = ['seller', 'buyer', 'admin'];
 
+var ShoppingCartItemSchema = new Schema({
+  // TODO: double check this works
+  product: {type:Schema.Types.ObjectId, ref:'Products'},
+  name: String,
+  price: Number,// TODO double check this data type
+  unit: String,
+  quantity: Number
+});
+
 var AddressSchema = new Schema({
     fullName : String,
     addressLine1 : String,
@@ -49,7 +58,8 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   google: {},
-  github: {}
+  github: {},
+  shoppingCart: [ShoppingCartItemSchema]
 });
 
 /**
@@ -131,6 +141,10 @@ var validatePresenceOf = function(value) {
 UserSchema
   .pre('save', function(next) {
     if (!this.isNew) return next();
+
+    console.log(this.isNew);
+    console.log(this.hashedPassword);
+    console.log(authTypes.indexOf(this.provider));
 
     if (!validatePresenceOf(this.hashedPassword) && authTypes.indexOf(this.provider) === -1)
       next(new Error('Invalid password'));

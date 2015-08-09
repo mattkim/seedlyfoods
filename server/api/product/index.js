@@ -12,5 +12,6 @@ router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 router.get('/user/:_user', controller.getUserProducts);
+router.get('/findByNameRegex/:name', controller.findByNameRegex);
 
 module.exports = router;

@@ -12,11 +12,20 @@ angular.module('seedlyApp')
           controller:'password'
         }
       },
+      addShoppingCartItem: {
+        method: 'PUT',
+        params: {
+          controller:'shoppingcartitem'
+        }
+      },
       get: {
         method: 'GET',
         params: {
           id:'me'
         }
+      },
+      update: {
+        method: 'PUT' // this method issues a PUT request
       }
 	  });
   });

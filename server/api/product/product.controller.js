@@ -21,6 +21,23 @@ exports.getUserProducts = function(req, res) {
 };
 
 // Get list of products
+exports.findByNameRegex = function(req, res) {
+  // console.log(req._user);
+  console.log('findByNameRegex');
+  console.log(req.params.name);
+
+  var name = req.params.name;
+  Product.findByNameRegex(name,
+    function(err, products) {
+      console.log(err);
+      console.log(products);
+      return res.status(200).json(products);
+    }
+  );
+};
+
+
+// Get list of products
 exports.index = function(req, res) {
   Product.find(function (err, products) {
     if(err) { return handleError(res, err); }
