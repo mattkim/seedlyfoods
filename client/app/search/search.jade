@@ -2,7 +2,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   .row
     .col-lg-12
-      h2.page-header Your Products
+      h2.page-header Search Results
       ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='product in awesomeProducts')
         li
           a(href='/productdetail/{{product._id}}', tooltip='{{product.name}}')

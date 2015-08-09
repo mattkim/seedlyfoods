@@ -39,5 +39,15 @@ ProductSchema.statics.findByNameRegex = function(name, cb){
 	    console.log(name);
 		return this.find({ name: new RegExp(name, 'i')}, cb);
 	}
+ProductSchema.statics.findByIds = function(ids, cb){
+	    console.log('ProductSchema.statics.findByUser');
+	    
+	    var objectIds = [];
 
+	    for(var i = 0; i < ids.length; i++) {
+	    	objectIds.push(new ObjectId(ids[i]));
+	    }
+
+		return this.find({ _id: {$in:objectIds}}, cb);
+	}
 module.exports = mongoose.model('Product', ProductSchema);

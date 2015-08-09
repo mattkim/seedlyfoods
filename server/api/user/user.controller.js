@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var Product = require('../product/product.model');
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -57,6 +58,33 @@ exports.destroy = function(req, res) {
   User.findByIdAndRemove(req.params.id, function(err, user) {
     if(err) return res.status(500).send(err);
     return res.status(204).send('No Content');
+  });
+};
+
+exports.getShoppingCart = function(req, res) {
+  var userId = req.user._id;
+
+  console.log('getShoppingCart');
+
+  User.findById(userId, function(err, user) {
+    if (err) return res.status(500).send(err);
+    if (!user) return res.status(500).send('No User found');
+    console.log('getShoppingCart');
+    console.log(user.shoppingCart);
+
+    // Get the full product
+    var products = [];
+
+    for(var i = 0; i < user.shoppingCart.length; i++) {
+      products.push(user.shoppingCart[i].product);
+    }
+
+    Product.findByIds(products,
+      function(err, products) {
+        if(err) res.status(500).send(err);
+        res.json(products);
+      }
+    );
   });
 };
 

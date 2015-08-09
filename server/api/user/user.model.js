@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 var customerTypes = ['seller', 'buyer', 'admin'];
+var ObjectId = mongoose.Types.ObjectId;
 
 var ShoppingCartItemSchema = new Schema({
   // TODO: double check this works

@@ -18,6 +18,13 @@ angular.module('seedlyApp')
           controller:'shoppingcartitem'
         }
       },
+      getShoppingCart: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller:'shoppingcart'
+        }
+      },
       get: {
         method: 'GET',
         params: {

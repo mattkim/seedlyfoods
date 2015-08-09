@@ -1,15 +1,17 @@
 div(ng-include='"components/navbar/navbar.html"')
-.col-md-12
-    b
-      {{product.name}}
-    br
-    ${{product.offers[0].price}} / {{product.offers[0].unit}} 
-    br
-    {{product.description}}
-    br
-    div.productimgdiv
-      img.productimg(src='{{product.imgurl}}')
-    div
-      form.form(name='form', ng-submit='addShoppingCartItem(form)', novalidate='')
-        button.btn.btn-inverse.btn-lg.btn-login(type='submit')
-          | Add to Shopping Cart
+.container
+  .row
+    .col-md-12
+        h2
+          {{product.name}}
+        ${{product.offers[0].price}} / {{product.offers[0].unit}} 
+        br
+        {{product.description}}
+        br
+        div.productimgdiv
+          img.productimg(src='{{product.imgurl}}')
+        br
+        div
+          form.form(name='form', ng-submit='addShoppingCartItem(form)', novalidate='')
+            button.btn.btn-inverse.btn-lg.btn-login(type='submit')
+              | Add to Shopping Cart
