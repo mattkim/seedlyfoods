@@ -27,9 +27,8 @@ div(ng-include='"components/navbar/navbar.html"')
       .form-group(ng-class='{ "has-success": form.amount.$valid && submitted,\
         "has-error": form.amount.$invalid && submitted }')
           label Amount
-          input.form-control(type='text', name='amount', ng-model='checkout.amount', required='')
-          p.help-block(ng-show='form.amount.$error.required && submitted')
-            | An amount is required
+          p
+            | ${{checkout.amount}}
 
       // TODO: does not need billing address... interestingly, but should be optional
       // TODO: should add shipping address here too.

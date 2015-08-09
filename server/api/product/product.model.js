@@ -40,7 +40,8 @@ ProductSchema.statics.findByNameRegex = function(name, cb){
 		return this.find({ name: new RegExp(name, 'i')}, cb);
 	}
 ProductSchema.statics.findByIds = function(ids, cb){
-	    console.log('ProductSchema.statics.findByUser');
+	    console.log('ProductSchema.statics.findByIds');
+	    console.log(ids);
 	    
 	    var objectIds = [];
 

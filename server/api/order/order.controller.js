@@ -2,13 +2,20 @@
 
 var _ = require('lodash');
 var Order = require('./order.model');
+var Product = require('../product/product.model');
+var User = require('../user/user.model');
 var stripe = require('../stripe/stripe.controller');
 
 exports.charge = function(req, res) {
   // Create order id here.
+  console.log('charge');
 
-  var token = req.query.token;
-  var amount = req.query.amount;
+  var token = req.body.token;
+  var amount = req.body.amount;
+  var buyer = req.body.buyer;
+  var products = req.body.products; // A list of product ids + quantities
+
+  console.log(req.body);
 
   stripe.charge(token, amount, function(chargeResult){
     var err = chargeResult.err;
@@ -37,6 +44,35 @@ exports.charge = function(req, res) {
       // tax?
       // shipping?
       // Stripe tax?
+        // find each one
+
+      // Create an order after the charge succeeds
+      User.findById(buyer, function(err, buyer){
+        Product.findByIds(products, function(err, products) {
+          console.log(products);
+          // So now i have the buyer and seller and product
+          var lineItems = [];
+          for(var i = 0; i < products.length; i++) {
+            // TODO: double check that these ids get stored properly.
+            lineItems.push({seller: products[i].seller, product: products[i]._id});
+          }
+          console.log(lineItems);
+
+          Order.create({
+            buyer: buyer._id,
+            amount: amount,
+            lineItems: lineItems // probably only the buyer id and product id
+            //billingAddress: {},
+            //shippingAddress: {}, // TODO: pass this through
+            //shippingInstructions: {}, // Some free text about like maybe time and extra instructions?
+            //buyerStatus: 'buyer_charged', // Means we charged the buyer's card
+            //sellerStatus: 'pending_shipping', // Means we are waiting for shipping
+            //refundStatus: null,
+            //tax: tax,
+            //shippingCost: shippingCost
+          });
+        });
+      });
     }
   });
 };

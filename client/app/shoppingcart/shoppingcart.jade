@@ -9,5 +9,7 @@ div(ng-include='"components/navbar/navbar.html"')
             | {{product.name}}
             br
             | ${{product.offers[0].price}} / {{product.offers[0].unit}}
+            // TODO: this is not set anymore because of the way i set it up.
+            | {{product.quantity}}
             div.productimgdiv
               img.productimg(src='{{product.imgurl}}')
