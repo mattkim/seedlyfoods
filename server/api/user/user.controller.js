@@ -65,20 +65,25 @@ exports.destroy = function(req, res) {
  */
 exports.addShoppingCartItem = function(req, res) {
   var userId = req.user._id;
-  var shoppingCartItem = req.body.shoppingCartItem;
+  console.log(req.body);
+  var shoppingCartItem = req.body;
+  console.log(shoppingCartItem);
 
   User.findById(userId, function(err, user) {
     var shoppingCart = user.shoppingCart;
-    
+
     if(shoppingCart === null) {
       shoppingCart = [];
     }
 
+    console.log(shoppingCart);    
+
     var found = false;
     for(var i = 0; i < shoppingCart.length; i++) {
       // TODO: might need to convert product to a string
-      if(shoppingCart.get(i).product === shoppingCartItem.product) {
-        shoppingCart.get(i).quantity += 1;
+      if(shoppingCart[i].product.toString() === shoppingCartItem.product) {
+        console.log('updating quantity');
+        shoppingCart[i].quantity += 1;
         found = true;
       }
     }
@@ -89,6 +94,8 @@ exports.addShoppingCartItem = function(req, res) {
     }
 
     user.shoppingCart = shoppingCart;
+
+    console.log(user.shoppingCart);
 
     user.save(function(err) {
       if (err) return validationError(res, err);
