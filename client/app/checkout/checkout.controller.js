@@ -19,7 +19,7 @@ angular.module('seedlyApp')
             for(var i = 0; i < shoppingCart.length; i++) {
               $scope.checkout.amount += shoppingCart[i].offers[0].price;
               $scope.checkout.products.push(shoppingCart[i]._id);
-            } 
+            }
           }, function(err) {
             console.log(err);
           }

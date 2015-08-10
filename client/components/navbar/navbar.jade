@@ -50,16 +50,16 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
               a(href='/createproduct') Create Product
 
             // TODO: implement view sales
-            li(ng-show='isSeller()', ng-class='{active: isActive("/orders")}')
-              a(href='/orders') Orders
+            li(ng-show='isSeller()', ng-class='{active: isActive("/sellerorders")}')
+              a(href='/sellerorders') Orders
 
             // TODO: implement update info
             li(ng-show='isSeller()', ng-class='{active: isActive("/accountinfo")}')
               a(href='/accountinfo') Account Info  
 
             // TODO: implement view sales
-            li(ng-show='isBuyer()', ng-class='{active: isActive("/orders")}')
-              a(href='/orders') Orders
+            li(ng-show='isBuyer()', ng-class='{active: isActive("/buyerorders")}')
+              a(href='/buyerorders') Orders
 
             // TODO: implement checkout
             li(ng-show='isBuyer()', ng-class='{active: isActive("/checkout")}')

@@ -6,6 +6,51 @@ var Product = require('../product/product.model');
 var User = require('../user/user.model');
 var stripe = require('../stripe/stripe.controller');
 
+exports.findBySeller = function(req, res) {
+  console.log(req.params);
+  var id = req.params.id2;
+  // TODO: note this returns a collection
+  Order.findBySeller(id, function(err, orders) {
+    console.log(orders);
+    var resultOrders = [];
+
+    // Basically only return orders if it belongs to this buyer
+    for(var i = 0; i < orders.length; i++) {
+      var currResultOrder = {lineItems:[]};
+
+      for(var j = 0; j < orders[i].lineItems.length; j++) {
+        var currSeller = orders[i].lineItems[j].seller;
+        console.log(currSeller);
+        console.log(id);
+        if(id === currSeller.toString()) {
+          console.log('adding line item');
+          // Deep copy ?
+          currResultOrder.buyer = orders[i].buyer; // You care who the buyer is for sure. // may want to query for him here.
+          currResultOrder.lineItems.push(orders[i].lineItems[j]);
+        }
+      }
+
+      console.log(currResultOrder);
+      if(currResultOrder.lineItems.length > 0) { // TODO: double check this works
+        resultOrders.push(currResultOrder);
+      }
+    }
+
+    console.log(resultOrders);
+
+    res.status(200).json(resultOrders);
+  });
+};
+
+exports.findByBuyer = function(req, res) {
+  console.log(req.params);
+  var id = req.params.id2;
+  // TODO: note this returns a collection
+  Order.findByBuyer(id, function(err, orders) {
+    res.status(200).json(orders);
+  });
+};
+
 exports.charge = function(req, res) {
   // Create order id here.
   console.log('charge');

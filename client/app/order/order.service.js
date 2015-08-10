@@ -2,13 +2,27 @@
 
 angular.module('seedlyApp')
   .factory('Order', function($resource){
-    return $resource ('/api/orders/:id/:controller',{
+    return $resource ('/api/orders/:id/:controller/:id2',{
       id: '@_id'
     },{
       charge: {
         method: 'POST',
         params: {
           controller: 'charge'
+        }
+      },
+      findByBuyer: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller: 'findByBuyer'
+        }
+      },
+      findBySeller: {
+        method: 'GET',
+        isArray: true,
+        params: {
+          controller: 'findBySeller'
         }
       }
     });
