@@ -1,4 +1,18 @@
 div(ng-include='"components/navbar/navbar.html"')
-.col-md-12
-    | This is the sellerorders view.
-    {{awesomeOrders}}
+.container
+  .row
+    .col-lg-12
+      h2.page-header Your Orders
+      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='order in awesomeOrders')
+        li
+          // TODO: there needs to be a public order id i forgot.
+          a(href='#', tooltip='{{order._id}}')
+            p
+              | order id: {{order._id}}
+            p
+              | buyer: {{order.buyer}}
+            span(ng-repeat='lineItem in order.lineItems')
+              p
+                | line item id: {{lineItem._id}}
+              p
+                | line item prouct: {{lineItem.product}}
